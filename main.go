@@ -20,4 +20,5 @@ func main() {
 	addr := global.Config.System.Addr()
 	global.Log.Info(fmt.Sprintf("gvb_server at %s", addr))
 	Router.Run(addr)
+
 }
