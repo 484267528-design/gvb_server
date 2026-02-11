@@ -1,35 +1,40 @@
 package core
 
 import (
-	"fmt"
-	"os"
-
 	"gvb_server/config"
 	"gvb_server/global"
+	"io/fs"
+	"io/ioutil"
+	"log"
 
 	"gopkg.in/yaml.v3"
 )
 
+const configFile = "settings.yaml"
+
 func Initconf() {
-	const configFile = "settings.yaml"
-
-	// 1. 读取 yaml 文件
-	data, err := os.ReadFile(configFile)
+	c := &config.Config{}
+	yamlConf, err := ioutil.ReadFile(configFile)
 	if err != nil {
-		panic(fmt.Sprintf("配置文件读取失败: %v", err))
+		panic(err)
 	}
-
-	// 2. 初始化 Config
-	conf := new(config.Config)
-
-	// 3. 解析 yaml → 结构体
-	err = yaml.Unmarshal(data, conf)
+	err = yaml.Unmarshal(yamlConf, c)
 	if err != nil {
-		panic(fmt.Sprintf("配置文件解析失败: %v", err))
+		panic(err)
 	}
-
-	// 4. 赋值给全局变量
-	global.Config = conf
-
-	fmt.Println("config yamlFile load Init success.")
+	log.Println("config yamlFile Init success")
+	global.Config = c
+}
+func SetYaml() error {
+	bytedata, err := yaml.Marshal(global.Config)
+	if err != nil {
+		return err
+	}
+	err = ioutil.WriteFile(configFile, bytedata, fs.ModePerm)
+	if err != nil {
+		global.Log.Error(err)
+		return err
+	}
+	global.Log.Info("配置文件成功")
+	return nil
 }
