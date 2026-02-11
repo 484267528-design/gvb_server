@@ -16,6 +16,9 @@ system:
     host: 127.0.0.1
     port: 8080
     env: release
+upload:
+    size: 2
+    path: uploads/file
 site_info:
     created_at: "2026-2-10"
     title: 包包的个人博客
@@ -30,6 +33,7 @@ qq:
     key: xx
     redirect: http://xx.xx.com/login?flag=qq
 qin_iu:
+    enable: false
     access_key: UMM-xx-FdRIf-xx
     secret_key: xx
     bucket: bao_bao_zhi_dao
