@@ -25,22 +25,10 @@ site_info:
     addr: 安徽 池州
     slogan: 哈吉耄耋
     github_url: https://github.com/484267528-design/gvb_server
-jwt:
-    secret: xxx
-    expires: 48
-    issuer: xx
 qq:
-    app_id: "xx"
+    app_id: xx
     key: xx
     redirect: http://xx.xx.com/login?flag=qq
-email:
-    host: smtp.qq.com
-    port: 465
-    user: xxx@qq.cpm
-    password: xxx
-    default_form_email: 包包知道
-    user_ssl: xx
-    user_tls: xx
 qin_iu:
     access_key: UMM-xx-FdRIf-xx
     secret_key: xx
@@ -48,5 +36,15 @@ qin_iu:
     cdn: xx://xx.xx.com/
     zone: xx
     size: 5
-
-
+email:
+    host: smtp.qq.com
+    port: "465"
+    user: 484267528@qq.cpm
+    password: xxx
+    default_from_email: 包包知道
+    user_ssl: true
+    user_tls: false
+jwt:
+    secret: xxx
+    expires: 48
+    issuer: xx
