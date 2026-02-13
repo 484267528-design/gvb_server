@@ -1,7 +1,7 @@
 mysql:
     host: 127.0.0.1
     port: 3306
-    config: ""
+    config: charset=utf8mb4&parseTime=True&loc=Local
     db: gvb_db
     user: root
     password: root
@@ -29,7 +29,7 @@ site_info:
     slogan: 哈吉耄耋
     github_url: https://github.com/484267528-design/gvb_server
 qq:
-    app_id: xx
+    app_id: "11"
     key: xx
     redirect: http://xx.xx.com/login?flag=qq
 qin_iu:

@@ -3,8 +3,10 @@ package images_api
 import (
 	"fmt"
 	"gvb_server/global"
+	"gvb_server/models"
 	"gvb_server/models/res"
 	"gvb_server/utils"
+	"io"
 	"os"
 	"path"
 	"strings"
@@ -78,7 +80,27 @@ func (ImagesApi) ImageUploadView(c *gin.Context) {
 			})
 			continue
 		}
-		err := c.SaveUploadedFile(file, filePath)
+
+		fileObj, err := file.Open()
+		if err != nil {
+			global.Log.Error(err)
+		}
+		byteData, err := io.ReadAll(fileObj)
+		imageHash := utils.Md5(byteData)
+		//去数据库中查这个图片是否存在
+		var bannerModel models.BannerModel
+		err = global.DB.Take(&bannerModel, "hash = ?", imageHash).Error
+		if err == nil {
+			//找到了
+			resList = append(resList, FileUploadResponse{
+				Filename:  bannerModel.Path,
+				IsSuccess: false,
+				Msg:       "图片已存在",
+			})
+			continue
+		}
+
+		err = c.SaveUploadedFile(file, filePath)
 		if err != nil {
 			global.Log.Error(err)
 			resList = append(resList, FileUploadResponse{
@@ -93,6 +115,12 @@ func (ImagesApi) ImageUploadView(c *gin.Context) {
 			Filename:  filePath,
 			IsSuccess: true,
 			Msg:       "上传成功",
+		})
+		//图片入库
+		global.DB.Create(&models.BannerModel{
+			Path: filePath,
+			Hash: imageHash,
+			Name: fileName,
 		})
 
 	}
