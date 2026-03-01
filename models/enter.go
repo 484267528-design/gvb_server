@@ -7,6 +7,9 @@ type MODEL struct {
 	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
 }
+type RemoveResult struct {
+	IDList []int `json:"id_list"`
+}
 
 type PageInfo struct {
 	Page  int    `form:"page"`
