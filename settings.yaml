@@ -39,6 +39,7 @@ qin_iu:
     bucket: bbzhidao
     cdn: http://tb775y8gw.hn-bkt.clouddn.com/
     zone: z2
+    prefix: "gvb"
     size: 5
 email:
     host: smtp.qq.com
