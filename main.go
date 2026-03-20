@@ -3,11 +3,17 @@ package main
 import (
 	"fmt"
 	"gvb_server/core"
+	_ "gvb_server/docs"
 	"gvb_server/flag"
 	"gvb_server/global"
 	"gvb_server/router"
 )
 
+// @title gvb_server API文档
+// @version 1.0
+// @description gvb_server API文档
+// @host localhost:8080
+// @BasePath /
 func main() {
 	core.Initconf() //读取配置文件
 	fmt.Println(global.Config)

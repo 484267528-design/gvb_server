@@ -9,12 +9,20 @@ import (
 )
 
 type AdvertRequest struct {
-	Title  string ` json:"title" binding:"required" msg:"请输入标题"`       //标题
-	Href   string ` json:"href" binding:"required,url" msg:"跳转连接非法"`  //跳转链接
-	Image  string ` json:"image" binding:"required,url" msg:"图片地址非法"` //图片
-	IsShow bool   ` json:"is_show" binding:"required" msg:"请选择是否展示"` //是否展示
+	Title  string ` json:"title" binding:"required" msg:"请输入标题" structs:"title"`     //标题
+	Href   string ` json:"href" binding:"required,url" msg:"跳转连接非法" structs:"href"`  //跳转链接
+	Image  string ` json:"image" binding:"required,url" msg:"图片地址非法" struct:"image"` //图片
+	IsShow bool   ` json:"is_show"  msg:"请选择是否展示" structs:"is_show"`                 //是否展示
 }
 
+// AdvertCreateView 添加广告
+// @Tags 广告管理
+// @Summary   创建广告
+// @Description  创建新的广告信息
+// @Param        data body AdvertRequest true "广告信息"
+// @Router       /api/adverts [post]
+// @Produce   json
+// @Success      200 {object} res.Response{}
 func (AdvertApi) AdvertCreateView(c *gin.Context) {
 	var cr AdvertRequest
 	err := c.ShouldBindJSON(&cr)
