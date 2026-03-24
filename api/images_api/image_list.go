@@ -8,6 +8,15 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// ImageListView 图片列表
+// @Summary 图片列表
+// @Description 获取图片列表
+// @Tags 图片管理
+// @Accept json
+// @Produce json
+// @Param page query models.PageInfo false "查询参数"
+// @Success 200 {object} res.Response{data=res.ListResponse[models.BannerModel]}
+// @Router /api/images [get]
 func (ImagesApi) ImageListView(c *gin.Context) {
 	var cr models.PageInfo
 	err := c.ShouldBindQuery(&cr)

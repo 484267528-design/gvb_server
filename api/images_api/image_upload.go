@@ -25,6 +25,16 @@ var (
 )
 
 // 上传单给图片，返回图片的url
+
+// ImageUploadView 上传图片
+// @Summary 上传图片
+// @Description 上传单张或多张图片
+// @Tags 图片管理
+// @Accept multipart/form-data
+// @Produce json
+// @Param images formData file true "图片文件(支持多张)"
+// @Success 200 {object} res.Response
+// @Router /api/images [post]
 func (ImagesApi) ImageUploadView(c *gin.Context) {
 	form, err := c.MultipartForm()
 	if err != nil {

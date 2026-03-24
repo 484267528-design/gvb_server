@@ -8,13 +8,22 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type ImagUpdateRequest struct {
+type ImageUpdateRequest struct {
 	ID   uint   `json:"id" binding:"required" mag:"请选择文件id"`
 	Name string `json:"name" binding:"required" mag:"请输入文件名称"`
 }
 
+// ImageUpdateView 图片修改
+// @Summary 修改图片名称
+// @Description 根据ID修改图片名称
+// @Tags 图片管理
+// @Accept json
+// @Produce json
+// @Param data body images_api.ImageUpdateRequest true "图片ID和名称"
+// @Success 200 {object} res.Response
+// @Router /api/images [put]
 func (ImagesApi) ImageUpdateView(c *gin.Context) {
-	var cr ImagUpdateRequest
+	var cr ImageUpdateRequest
 	err := c.ShouldBindJSON(&cr)
 	if err != nil {
 		res.FailWithError(err, &cr, c)
