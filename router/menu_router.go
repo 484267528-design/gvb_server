@@ -10,4 +10,6 @@ func (router RouterGroup) MenuRouter() {
 	router.GET("menus", app.MenuListView)
 	router.GET("menus_names", app.MenuNameList)
 	router.PUT("menus/:id", app.MenuUpdateView)
+	router.DELETE("menus", app.MenuRemoveView)
+	router.GET("menus/:id", app.MenuDetailView)
 }
