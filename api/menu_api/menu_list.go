@@ -30,7 +30,7 @@ func (MenuApi) MenuListView(c *gin.Context) {
 	var menus []MenuResponse
 	for _, model := range menuList {
 		//model就是一个菜单
-		var banners []Banner
+		banners := []Banner{}
 		for _, banner := range menuBanners {
 			if model.ID != banner.MenuID {
 				continue
