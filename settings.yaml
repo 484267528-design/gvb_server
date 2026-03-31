@@ -51,5 +51,5 @@ email:
     user_tls: false
 jwt:
     secret: xxx
-    expires: 48
+    expires: 2
     issuer: xx

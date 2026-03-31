@@ -6,7 +6,7 @@ type UserModel struct {
 	MODEL
 	NickName      string           `gorm:"size:36" json:"nick_name" `            //昵称
 	UserName      string           `gorm:"size:36" json:"user_name" `            //用户名
-	Password      string           `gorm:"size:255" json:"password" `            //密码
+	Password      string           `gorm:"size:255" json:"-" `                   //密码
 	Avatar        string           `gorm:"size:255" json:"avatar_id" `           //头像ID
 	Email         string           `gorm:"size:255" json:"email" `               //邮箱
 	Tel           string           `gorm:"size:255" json:"tel" `                 //电话
